@@ -51,6 +51,20 @@ class Person_model extends Model {
         return $result;
     }
 
+    function query($sql) {
+        $result = array();
+        $query = $this->db->query($sql);
+        $query = $this->db->get($this->table_name);
+        foreach ($query->result_array() as $row) {
+            $result[] = $row;
+        }
+        return $result;
+    }
+
+    function total_rows() {
+        return $this->db->count_all($this->table_name);
+    }
+
 }
 
 ?>
